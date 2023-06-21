@@ -3,13 +3,14 @@ import sys
 
 from classes.box import Box
 from classes.cross_image import CrossImage
+from classes.circle_image import CircleImage
 
 BACKGROUND_COLOR = (255, 255, 255)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 WINDOW_TITLE =  "Tic Tac Toe"
 BOX_SIZE = 100
-BOX_PADDING = 10
+BOX_PADDING = 5
 
 box_positions = []
 
@@ -27,7 +28,8 @@ def handle_click(mouse_pos):
   for box in box_positions:
     current_position = box.is_hovered(mouse_pos)
     if current_position:
-      image = CrossImage(screen, current_position)
+      # image = CrossImage(screen, current_position)
+      image = CircleImage(screen, current_position)
       image.display()
 
 pygame.init()
