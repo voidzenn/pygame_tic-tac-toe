@@ -2,6 +2,7 @@ import pygame
 import sys
 
 from classes.box import Box
+from classes.cross_image import CrossImage
 
 BACKGROUND_COLOR = (255, 255, 255)
 SCREEN_WIDTH = 800
@@ -25,6 +26,9 @@ def create_boxes():
 def handle_click(mouse_pos):
   for box in box_positions:
     current_position = box.is_hovered(mouse_pos)
+    if current_position:
+      image = CrossImage(screen, current_position)
+      image.display()
 
 pygame.init()
 
