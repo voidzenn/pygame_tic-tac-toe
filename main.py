@@ -7,14 +7,17 @@ BACKGROUND_COLOR = (255, 255, 255)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 WINDOW_TITLE =  "Tic Tac Toe"
+BOX_SIZE = 100
+BOX_PADDING = 10
 
 box_positions = []
 
 def create_boxes():
+  total_size = BOX_SIZE + BOX_PADDING
   for row in range(3):
     for col in range(3):
-      x = col * (100 + 10)
-      y = row * (100 + 10)
+      x = col * total_size
+      y = row * total_size
       box = Box(screen, x, y)
       box.draw()
       box_positions.append(box)
