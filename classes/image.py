@@ -14,8 +14,16 @@ class Image:
     size = self.get_size()
     return pygame.transform.scale(self.load_file(), (size, size))
 
+  def center_image_size(self, padding):
+    pos = self.get_position()
+    x = pos[0] + (padding * 2)
+    y = pos[1] + (padding * 2)
+
+    return (x, y)
+
   def get_name(self):
     return self.get_image_name()
 
   def get_size(self):
     return self.get_image_size()
+

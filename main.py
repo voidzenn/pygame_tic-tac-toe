@@ -27,18 +27,13 @@ def create_boxes():
       box.draw()
       box_positions.append(box)
 
-def center_image_size(position):
-  x = position[0] + (BOX_PADDING * 2)
-  y = position[1] + (BOX_PADDING * 2)
-  return (x, y)
-
 def load_circle(position):
-  image = CircleImage(screen, center_image_size(position))
-  image.display()
+  image = CircleImage(screen, position)
+  image.display_centered(BOX_PADDING)
 
 def load_cross(position):
-  image = CrossImage(screen, center_image_size(position))
-  image.display()
+  image = CrossImage(screen, position)
+  image.display_centered(BOX_PADDING)
 
 def handle_image(position):
   selected_boxes = game.get_selected_boxes()

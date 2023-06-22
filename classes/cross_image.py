@@ -11,6 +11,10 @@ class CrossImage(Image):
   def display(self):
     self.screen.blit(super().resized_image(), (self.get_position()))
 
+  def display_centered(self, box_padding):
+    size = super().center_image_size(box_padding)
+    self.screen.blit(super().resized_image(), size)
+
   def get_image_name(self):
     return self.image_name
 
@@ -19,3 +23,6 @@ class CrossImage(Image):
 
   def get_image_size(self):
     return self.size
+
+  def get_padding(self):
+    return self.padding
