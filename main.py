@@ -17,7 +17,6 @@ box_positions = []
 selected_boxes = []
 game = Game()
 
-
 def create_boxes():
   total_size = BOX_SIZE + BOX_PADDING
   for row in range(3):
@@ -37,12 +36,16 @@ def load_cross(position):
   image.display()
 
 def handle_image(position):
-  if game.is_current_turn_circle():
-    load_circle(position)
-    game.set_previous_turn_cross()
-  elif not game.is_current_turn_circle():
-    load_cross(position)
-    game.set_previous_turn_circle()
+  selected_boxes = game.get_selected_boxes()
+  if position not in selected_boxes:
+    if game.is_current_turn_circle():
+      load_circle(position)
+      game.set_previous_turn_cross()
+    elif not game.is_current_turn_circle():
+      load_cross(position)
+      game.set_previous_turn_circle()
+
+    game.add_position(position)
 
 def handle_click(mouse_pos):
   for box in box_positions:
