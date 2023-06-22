@@ -1,18 +1,21 @@
 import pygame
 
-class Image:
-  def __init__(self):
-    self.root_path = "assets/images"
+ROOT_PATH = "assets/images"
 
-  def image_load(self, img_name):
+class Image:
+  def load_file(self):
     try:
-      path = self.root_path + "/" + img_name
+      path = ROOT_PATH + "/" + self.get_name()
       return pygame.image.load(path)
     except FileNotFoundError:
       print("File cannot be found")
 
-  def resized_image(self, image, x, y):
-    return pygame.transform.scale(image, (x, y))
+  def resized_image(self):
+    size = self.get_size()
+    return pygame.transform.scale(self.load_file(), (size, size))
 
-  def get_rect(self, image):
-    return image.get_rect()
+  def get_name(self):
+    return self.get_image_name()
+
+  def get_size(self):
+    return self.get_image_size()

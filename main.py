@@ -30,11 +30,11 @@ def create_boxes():
 
 def load_circle(position):
   image = CircleImage(screen, position)
-  return image.display()
+  image.display()
 
 def load_cross(position):
   image = CrossImage(screen, position)
-  return image.display()
+  image.display()
 
 def handle_image(position):
   if game.is_current_turn_circle():
