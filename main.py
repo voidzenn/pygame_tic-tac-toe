@@ -74,13 +74,16 @@ def run_game():
         sys.exit()
 
       if event.type == pygame.MOUSEBUTTONDOWN:
-        if game.is_circle_won() or game.is_cross_won():
-          print(game.check_winner())
-        else:
+        if not game.is_ended():
           count = game.get_count_selected_boxes()
           if count < len(box_positions):
             mouse_pos = pygame.mouse.get_pos()
             handle_click(mouse_pos)
+
+      if event.type == pygame.MOUSEBUTTONUP:
+        if game.is_circle_won() or game.is_cross_won():
+          game.end()
+          print(game.check_winner())
 
     pygame.display.update()
 

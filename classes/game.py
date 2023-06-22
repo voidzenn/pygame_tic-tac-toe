@@ -18,6 +18,7 @@ class Game:
     self.selected_boxes = []
     self.circle_selection = []
     self.cross_selection = []
+    self.game_ended = False
 
   def set_previous_turn_cross(self):
     self.previous_turn = "cross"
@@ -42,6 +43,12 @@ class Game:
 
   def get_cross_selection(self):
     return self.cross_selection
+
+  def is_ended(self):
+    return self.game_ended
+
+  def end(self):
+    self.game_ended = True
 
   def add_position(self, position):
     self.selected_boxes.append(position)
