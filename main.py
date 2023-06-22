@@ -7,8 +7,8 @@ from classes.cross_image import CrossImage
 from classes.circle_image import CircleImage
 
 BACKGROUND_COLOR = (255, 255, 255)
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 300
+SCREEN_HEIGHT = 300
 WINDOW_TITLE =  "Tic Tac Toe"
 BOX_SIZE = 100
 BOX_PADDING = 5
