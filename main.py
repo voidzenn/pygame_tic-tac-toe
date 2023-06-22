@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+from classes.game import Game
 from classes.box import Box
 from classes.cross_image import CrossImage
 from classes.circle_image import CircleImage
@@ -13,6 +14,9 @@ BOX_SIZE = 100
 BOX_PADDING = 5
 
 box_positions = []
+selected_boxes = []
+game = Game()
+
 
 def create_boxes():
   total_size = BOX_SIZE + BOX_PADDING
@@ -24,13 +28,30 @@ def create_boxes():
       box.draw()
       box_positions.append(box)
 
+def load_circle(position):
+  image = CircleImage(screen, position)
+  return image.display()
+
+def load_cross(position):
+  image = CrossImage(screen, position)
+  return image.display()
+
+def handle_image(position):
+  if game.is_current_turn_circle():
+    load_circle(position)
+    game.set_previous_turn_cross()
+  elif not game.is_current_turn_circle():
+    load_cross(position)
+    game.set_previous_turn_circle()
+
 def handle_click(mouse_pos):
   for box in box_positions:
     current_position = box.is_hovered(mouse_pos)
     if current_position:
-      # image = CrossImage(screen, current_position)
-      image = CircleImage(screen, current_position)
-      image.display()
+      handle_image(current_position)
+
+def initialize_game():
+  create_boxes()
 
 pygame.init()
 
@@ -38,9 +59,9 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 screen.fill(BACKGROUND_COLOR)
 
-create_boxes()
-
 def run_game():
+  initialize_game()
+
   while True:
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
