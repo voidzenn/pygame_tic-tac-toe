@@ -35,23 +35,25 @@ def load_cross(position):
   image = CrossImage(screen, position)
   image.display_centered(BOX_PADDING)
 
-def handle_image(position):
+def handle_image(position, index):
   selected_boxes = game.get_selected_boxes()
   if position not in selected_boxes:
     if game.is_current_turn_circle():
       load_circle(position)
       game.set_previous_turn_cross()
+      game.add_circle_selection(index)
     elif not game.is_current_turn_circle():
       load_cross(position)
       game.set_previous_turn_circle()
+      game.add_cross_selection(index)
 
     game.add_position(position)
 
 def handle_click(mouse_pos):
-  for box in box_positions:
+  for index, box in enumerate(box_positions):
     current_position = box.is_hovered(mouse_pos)
     if current_position:
-      handle_image(current_position)
+      handle_image(current_position, index)
 
 def initialize_game():
   create_boxes()
@@ -72,8 +74,13 @@ def run_game():
         sys.exit()
 
       if event.type == pygame.MOUSEBUTTONDOWN:
-        mouse_pos = pygame.mouse.get_pos()
-        handle_click(mouse_pos)
+        if game.is_circle_won() or game.is_cross_won():
+          print(game.check_winner())
+        else:
+          count = game.get_count_selected_boxes()
+          if count < len(box_positions):
+            mouse_pos = pygame.mouse.get_pos()
+            handle_click(mouse_pos)
 
     pygame.display.update()
 
