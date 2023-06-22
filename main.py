@@ -7,8 +7,8 @@ from classes.cross_image import CrossImage
 from classes.circle_image import CircleImage
 
 BACKGROUND_COLOR = (255, 255, 255)
-SCREEN_WIDTH = 300
-SCREEN_HEIGHT = 300
+SCREEN_WIDTH = 310
+SCREEN_HEIGHT = 310
 WINDOW_TITLE =  "Tic Tac Toe"
 BOX_SIZE = 100
 BOX_PADDING = 5
@@ -27,12 +27,17 @@ def create_boxes():
       box.draw()
       box_positions.append(box)
 
+def center_image_size(position):
+  x = position[0] + (BOX_PADDING * 2)
+  y = position[1] + (BOX_PADDING * 2)
+  return (x, y)
+
 def load_circle(position):
-  image = CircleImage(screen, position)
+  image = CircleImage(screen, center_image_size(position))
   image.display()
 
 def load_cross(position):
-  image = CrossImage(screen, position)
+  image = CrossImage(screen, center_image_size(position))
   image.display()
 
 def handle_image(position):
