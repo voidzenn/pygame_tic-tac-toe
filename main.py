@@ -61,6 +61,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 screen.fill(BACKGROUND_COLOR)
 
 def run_game():
+  screen.fill(BACKGROUND_COLOR)
+
   game = Game()
   box_positions = create_boxes()
   text = Text(screen, (SCREEN_HEIGHT, SCREEN_WIDTH))
@@ -77,12 +79,19 @@ def run_game():
           if count < len(box_positions):
             mouse_pos = pygame.mouse.get_pos()
             handle_click(mouse_pos, game, box_positions)
+        if game.is_ended():
+          run_game()
 
       if event.type == pygame.MOUSEBUTTONUP:
-        if game.is_circle_won() or game.is_cross_won():
-          game.end()
-          text.set_text(game.check_winner())
-          text.display_text_box()
+        if not game.is_ended():
+          if game.is_circle_won() or game.is_cross_won():
+            game.end()
+            text.set_text(game.check_winner())
+            text.display_text_box()
+          elif game.get_count_selected_boxes() == len(box_positions):
+            game.end()
+            text.set_text("No winner, click again to restart")
+            text.display_text_box()
     pygame.display.update()
 
 run_game()
