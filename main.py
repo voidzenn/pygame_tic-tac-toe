@@ -15,7 +15,6 @@ BOX_SIZE = 100
 BOX_PADDING = 5
 
 box_positions = []
-selected_boxes = []
 game = Game()
 
 def create_boxes():
