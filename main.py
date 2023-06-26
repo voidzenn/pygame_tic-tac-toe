@@ -5,6 +5,7 @@ from classes.game import Game
 from classes.box import Box
 from classes.cross_image import CrossImage
 from classes.circle_image import CircleImage
+from classes.text import Text
 
 BACKGROUND_COLOR = (255, 255, 255)
 SCREEN_WIDTH = 310
@@ -64,6 +65,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 screen.fill(BACKGROUND_COLOR)
 
+text = Text(screen, (SCREEN_HEIGHT, SCREEN_WIDTH), "Hello World!")
+
 def run_game():
   initialize_game()
 
@@ -84,7 +87,7 @@ def run_game():
         if game.is_circle_won() or game.is_cross_won():
           game.end()
           print(game.check_winner())
-
+      text.display_text_box()
     pygame.display.update()
 
 run_game()
