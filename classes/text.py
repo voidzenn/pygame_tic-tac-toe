@@ -20,6 +20,9 @@ class Text:
     self.color = color
     self.font_type = font_type
 
+  def set_text(self, text):
+    self.text = text
+
   def get_screen_h(self):
     return self.screen_dimension[0]
 

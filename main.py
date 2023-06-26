@@ -65,7 +65,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 screen.fill(BACKGROUND_COLOR)
 
-text = Text(screen, (SCREEN_HEIGHT, SCREEN_WIDTH), "Hello World!")
+text = Text(screen, (SCREEN_HEIGHT, SCREEN_WIDTH))
 
 def run_game():
   initialize_game()
@@ -87,6 +87,7 @@ def run_game():
         if game.is_circle_won() or game.is_cross_won():
           game.end()
           print(game.check_winner())
+      text.set_text("Hello")
       text.display_text_box()
     pygame.display.update()
 
