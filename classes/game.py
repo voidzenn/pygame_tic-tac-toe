@@ -76,6 +76,6 @@ class Game:
 
   def check_winner(self):
     if self.is_circle_won():
-      print("Circle Won")
+      return "Circle Won, click again to restart"
     elif self.is_cross_won():
-      print("Cross Won")
+      return "Cross Won, click again to restart"

@@ -86,9 +86,8 @@ def run_game():
       if event.type == pygame.MOUSEBUTTONUP:
         if game.is_circle_won() or game.is_cross_won():
           game.end()
-          print(game.check_winner())
-      text.set_text("Hello")
-      text.display_text_box()
+          text.set_text(game.check_winner())
+          text.display_text_box()
     pygame.display.update()
 
 run_game()
